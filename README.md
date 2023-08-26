@@ -1,14 +1,14 @@
-# educandoapp
+# PROYECTO: Educandoapp
 
-PROYECTO:# educandoapp
-Aplicación educativa 
+Aplicación educativa de programación 
 
+El maquetado del proyecto se encuentra en el siguiente repositorio: https://github.com/aguirre-valeria/full-stack-project
+Educando-ecommerce:https://github.com/aguirre-valeria/educando-ecommerce
 
-
-El maquetado del proyecto se encuentra en el siguiente repositorio: https://github.com/aguirre-valeria/educando-ecommerce
-INTEGRANTES
-AGUIRRE, Cintia Valeria Bettiana
-BALZA, Juan
-DIAZ, Dario
-LUNA, Juan Eduardo
-Moreno, Romeo
+## INTEGRANTES
+-	<a href="https://github.com/aguirre-valeria">AGUIRRE, Cintia Valeria Bettiana</a>
+- <a href="https://github.com/Aparicio-Fernando">APARACIO, Fernando</a> ( abandonó)
+-	<a href="https://github.com/JuanBalza">BALZA, Juan</a>
+-	<a href="https://github.com/dario1595">DIAZ, Dario</a>
+-	<a href="https://github.com/eduscba">LUNA, Juan Eduardo</a>
+-	<a href="https://github.com/romeomoreno">Moreno, Romeo</a>
