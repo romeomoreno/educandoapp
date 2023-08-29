@@ -7,7 +7,7 @@ Educando-ecommerce:https://github.com/aguirre-valeria/educando-ecommerce
 
 ## INTEGRANTES
 -	<a href="https://github.com/aguirre-valeria">AGUIRRE, Cintia Valeria Bettiana</a>
-- <a href="https://github.com/Aparicio-Fernando">APARACIO, Fernando</a> ( abandonó)
+- <a href="https://github.com/Aparicio-Fernando">APARACIO, Fernando</a> 
 -	<a href="https://github.com/JuanBalza">BALZA, Juan</a>
 -	<a href="https://github.com/dario1595">DIAZ, Dario</a>
 -	<a href="https://github.com/eduscba">LUNA, Juan Eduardo</a>
