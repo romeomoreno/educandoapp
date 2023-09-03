@@ -11,5 +11,5 @@ Educando-ecommerce:https://github.com/aguirre-valeria/educando-ecommerce
 -	<a href="https://github.com/JuanBalza">BALZA, Juan</a>
 -	<a href="https://github.com/dario1595">DIAZ, Dario</a>
 -	<a href="https://github.com/eduscba">LUNA, Juan Eduardo</a>
--	<a href="https://github.com/isaias4912">Ramos Isaias Ruben </a>
--	<a href="https://github.com/romeomoreno">Moreno, Romeo</a>
+-	<a href="https://github.com/isaias4912">RAMOS Isaias Ruben </a>
+-	<a href="https://github.com/romeomoreno">MORENO, Romeo</a>
