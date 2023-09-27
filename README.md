@@ -1,8 +1,8 @@
 # PROYECTO: Educandoapp
 
 Aplicación educativa de programación 
-
-El maquetado del proyecto se encuentra en el siguiente repositorio:(https://github.com/romeomoreno/educandoapp)
+El maquetado del proyecto se encuentra en el siguiente repositorio: https://github.com/aguirre-valeria/full-stack-project
+Educando-ecommerce:https://github.com/aguirre-valeria/educando-ecommerce
 
 
 ## INTEGRANTES
