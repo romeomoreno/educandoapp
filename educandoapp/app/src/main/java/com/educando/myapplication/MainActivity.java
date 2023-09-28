@@ -1,7 +1,7 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
-import static com.lsparda.educandoapp.R.id.Cuenta;
-import static com.lsparda.educandoapp.R.id.Mycourse;
+import static com.educando.myapplication.R.id.Cuenta;
+import static com.educando.myapplication.R.id.Mycourse;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lsparda.educandoapp.db.DbHelper;
-import com.lsparda.educandoapp.db.DbUsuarios;
+import com.educando.myapplication.db.DbHelper;
+import com.educando.myapplication.db.DbUsuarios;
 
 import java.util.ArrayList;
 

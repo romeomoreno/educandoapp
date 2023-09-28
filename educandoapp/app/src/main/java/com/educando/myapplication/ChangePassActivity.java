@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lsparda.educandoapp.db.DbUsuarios;
+import com.educando.myapplication.db.DbUsuarios;
 
 public class ChangePassActivity extends AppCompatActivity {
 

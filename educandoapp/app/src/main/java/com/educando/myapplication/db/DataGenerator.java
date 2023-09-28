@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp.db;
+package com.educando.myapplication.db;
 
 import android.content.ContentValues;
 import android.content.Context;

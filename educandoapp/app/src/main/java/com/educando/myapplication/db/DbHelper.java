@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp.db;
+package com.educando.myapplication.db;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,9 +10,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.lsparda.educandoapp.CategoryDomain;
-import com.lsparda.educandoapp.CourseDomain;
-import com.lsparda.educandoapp.R;
+import com.educando.myapplication.CategoryDomain;
+import com.educando.myapplication.CourseDomain;
+import com.educando.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;

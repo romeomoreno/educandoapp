@@ -1,7 +1,7 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
-import static com.lsparda.educandoapp.db.DbHelper.TABLE_CATEGORIA;
-import static com.lsparda.educandoapp.db.DbHelper.TABLE_CURSO;
+import static com.educando.myapplication.db.DbHelper.TABLE_CATEGORIA;
+import static com.educando.myapplication.db.DbHelper.TABLE_CURSO;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lsparda.educandoapp.db.DbHelper;
+import com.educando.myapplication.db.DbHelper;
 
 import java.util.ArrayList;
 import java.util.List;
