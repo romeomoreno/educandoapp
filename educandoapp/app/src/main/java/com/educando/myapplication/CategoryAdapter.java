@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

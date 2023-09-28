@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lsparda.educandoapp.db.DbUsuarios;
+import com.educando.myapplication.db.DbUsuarios;
 
 public class LoginActivity extends AppCompatActivity {
 

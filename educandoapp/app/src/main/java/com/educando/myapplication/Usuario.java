@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 public class Usuario {
     private int id_usuario;

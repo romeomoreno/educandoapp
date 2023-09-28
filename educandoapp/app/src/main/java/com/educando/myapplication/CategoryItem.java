@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 public class CategoryItem {
     private String categoryName;

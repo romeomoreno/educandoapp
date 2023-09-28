@@ -1,7 +1,7 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
-import static com.lsparda.educandoapp.R.id.back_main;
-import static com.lsparda.educandoapp.R.id.back_account;
+import static com.educando.myapplication.R.id.back_main;
+import static com.educando.myapplication.R.id.back_account;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -21,8 +21,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lsparda.educandoapp.db.DbHelper;
-import com.lsparda.educandoapp.db.DbUsuarios;
+import com.educando.myapplication.db.DbHelper;
+import com.educando.myapplication.db.DbUsuarios;
 
 import java.util.ArrayList;
 import java.util.List;

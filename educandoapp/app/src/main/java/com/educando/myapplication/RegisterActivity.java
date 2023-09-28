@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.lsparda.educandoapp.db.DbUsuarios;
+import com.educando.myapplication.db.DbUsuarios;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText txtnombre, txtapellido, txtemail, txtpassword;

@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 import android.view.LayoutInflater;
 import android.view.View;

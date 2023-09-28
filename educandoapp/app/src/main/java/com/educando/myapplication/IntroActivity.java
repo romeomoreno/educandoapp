@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.lsparda.educandoapp.db.DataGenerator;
-import com.lsparda.educandoapp.db.DbHelper;
+import com.educando.myapplication.db.DataGenerator;
+import com.educando.myapplication.db.DbHelper;
 
 import java.io.File;
 

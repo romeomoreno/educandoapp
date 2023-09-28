@@ -1,4 +1,4 @@
-package com.lsparda.educandoapp.db;
+package com.educando.myapplication.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import com.lsparda.educandoapp.Usuario;
+import com.educando.myapplication.Usuario;
 
 public class DbUsuarios extends DbHelper {
 

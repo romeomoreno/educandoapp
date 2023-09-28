@@ -1,8 +1,8 @@
-package com.lsparda.educandoapp;
+package com.educando.myapplication;
 
 
-import static com.lsparda.educandoapp.R.id.acc_go_main;
-import static com.lsparda.educandoapp.R.id.acc_go_cursos;
+import static com.educando.myapplication.R.id.acc_go_main;
+import static com.educando.myapplication.R.id.acc_go_cursos;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lsparda.educandoapp.db.DbHelper;
-import com.lsparda.educandoapp.db.DbUsuarios;
+import com.educando.myapplication.db.DbHelper;
+import com.educando.myapplication.db.DbUsuarios;
 
 public class AccountActivity extends AppCompatActivity {
 
