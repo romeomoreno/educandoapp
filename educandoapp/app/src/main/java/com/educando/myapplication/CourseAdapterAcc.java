@@ -18,7 +18,6 @@ public class CourseAdapterAcc extends RecyclerView.Adapter<CourseAdapterAcc.Cour
     public CourseAdapterAcc(List<Course> courseList) {
         this.courseList = courseList;
     }
-
     @NonNull
     @Override
     public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +38,7 @@ public class CourseAdapterAcc extends RecyclerView.Adapter<CourseAdapterAcc.Cour
     }
 
     public class CourseViewHolder extends RecyclerView.ViewHolder {
-        TextView courseName, courseCategory, courseDescription;
+        TextView courseName, courseDescription;
         ImageView courseImage;
 
         public CourseViewHolder(@NonNull View itemView) {

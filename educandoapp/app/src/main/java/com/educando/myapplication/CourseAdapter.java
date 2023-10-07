@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.titleTxt.setText(items.get(position).getTitle());
         holder.ownerTxt.setText(items.get(position).getOwner());
         holder.priceTxt.setText("$" + formatter.format(items.get(position).getPrice()));
-        holder.timeTxt.setText(items.get(position).getTime()); // Muestra la duración
+        holder.timeTxt.setText(items.get(position).getTime());
 
         int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicPath(),
                 "drawable", holder.itemView.getContext().getPackageName());
@@ -56,6 +57,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTxt, ownerTxt, priceTxt, timeTxt;
         ImageView pic;
+        Button ButtomModifi;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,8 +66,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             priceTxt = itemView.findViewById(R.id.precioTxt);
             timeTxt = itemView.findViewById(R.id.timetxt);
             pic = itemView.findViewById(R.id.pic);
+            ButtomModifi = itemView.findViewById(R.id.ButtomModifi);
         }
     }
-
 }
 

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,7 +71,6 @@ public class MyCourseActivity extends AppCompatActivity {
         // Inicializa el TypedArray para obtener imágenes aleatorias
         courseImages = getResources().obtainTypedArray(R.array.course_images);
 
-
         // Obtiene el usuario logueado desde la base de datos local (SQLite)
         Usuario usuario = dbUsuarios.obtenerUsuarioLogueado();
 
@@ -98,7 +98,6 @@ public class MyCourseActivity extends AppCompatActivity {
                     // Aquí escribirás el código para iniciar la Main Activity
                     Intent intent = new Intent(MyCourseActivity.this, MainActivity.class);
                     startActivity(intent);
-
                 }
             });
 
@@ -110,7 +109,6 @@ public class MyCourseActivity extends AppCompatActivity {
                     // Aquí escribirás el código para iniciar la Main Activity
                     Intent intent = new Intent(MyCourseActivity.this, AccountActivity.class);
                     startActivity(intent);
-
                 }
             });
         } else {
@@ -143,13 +141,10 @@ public class MyCourseActivity extends AppCompatActivity {
                     Course course = new Course(nombre, descripcion);
                     courses.add(course);
                 }
-
                 cursor.close();
             }
-
             database.close();
         }
-
         return courses;
     }
 
@@ -172,7 +167,7 @@ public class MyCourseActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
             Course course = courses.get(position);
-            holder.bind(course);
+            holder.bind(course, position);
         }
 
         @Override
@@ -186,14 +181,18 @@ public class MyCourseActivity extends AppCompatActivity {
             private TextView courseNameTextView;
             private TextView descriptionTextView;
             private ImageView courseImageView;
+            private Button ButtomModifi;
 
             public CourseViewHolder(View itemView) {
                 super(itemView);
                 courseNameTextView = itemView.findViewById(R.id.course_name);
                 descriptionTextView = itemView.findViewById(R.id.course_description);
                 courseImageView = itemView.findViewById(R.id.course_image);
+                ButtomModifi = itemView.findViewById(R.id.ButtomModifi);
+                ButtomModifi.setText("-");
             }
-            public void bind(Course course) {
+
+            public void bind(Course course, int position) {
                 courseNameTextView.setText(course.getName());
                 descriptionTextView.setText(course.getDescription());
                 // Obtener una imagen aleatoria para cada curso
@@ -203,7 +202,67 @@ public class MyCourseActivity extends AppCompatActivity {
                 if (resourceId != -1) {
                     courseImageView.setImageResource(resourceId);
                 }
+
+                ButtomModifi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        eliminarCursoDeBaseDeDatos(position);
+                    }
+                });
             }
+        }
+
+        // Método para eliminar cursos asignados al usuario de la base de datos
+        private void eliminarCursoDeBaseDeDatos(int position) {
+            if (position >= 0 && position < courseList.size()) {
+                Course course = courseList.get(position);
+                int courseId = obtenerIdCursoDesdeNombre(course.getName());
+
+                if (courseId != -1) {
+                    // Obtiene al usuario logueado
+                    Usuario usuario = dbUsuarios.obtenerUsuarioLogueado();
+
+                    if (usuario != null) {
+                        SQLiteDatabase database = dbUsuarios.getWritableDatabase();
+
+                        if (database != null) {
+                            // Define la cláusula WHERE para eliminar la asignación del curso con el ID correspondiente
+                            String whereClause = "id_curso = ? AND id_usuario = ?";
+                            String[] whereArgs = {String.valueOf(courseId), String.valueOf(usuario.getId_usuario())};
+
+                            // Ejecuta la sentencia SQL DELETE en la tabla de asignaciones
+                            int rowsDeleted = database.delete(DbHelper.TABLE_INTER_CUR_USER, whereClause, whereArgs);
+
+                            if (rowsDeleted > 0) {
+                                // Eliminación exitosa, ahora elimina el curso visualmente y de la lista
+                                courseList.remove(position);
+                                courseAdapter.notifyItemRemoved(position);
+                            }
+                            database.close();
+                        }
+                    }
+                }
+            }
+        }
+
+        @SuppressLint("Range")
+        private int obtenerIdCursoDesdeNombre(String nombreCurso) {
+            int courseId = -1;
+            SQLiteDatabase database = dbUsuarios.getReadableDatabase();
+
+            if (database != null) {
+                String query = "SELECT id_curso FROM " + DbHelper.TABLE_CURSO + " WHERE nombre = ?";
+                Cursor cursor = database.rawQuery(query, new String[]{nombreCurso});
+
+                if (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        courseId = cursor.getInt(cursor.getColumnIndex("id_curso"));
+                    }
+                    cursor.close();
+                }
+                database.close();
+            }
+            return courseId;
         }
     }
 }
