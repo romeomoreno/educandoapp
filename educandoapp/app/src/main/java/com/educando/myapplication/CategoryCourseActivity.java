@@ -4,12 +4,14 @@ import static com.educando.myapplication.db.DbHelper.TABLE_CATEGORIA;
 import static com.educando.myapplication.db.DbHelper.TABLE_CURSO;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,11 +24,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.educando.myapplication.db.DbHelper;
+import com.educando.myapplication.db.DbUsuarios;
 
 import java.util.ArrayList;
 import java.util.List;
-import androidx.recyclerview.widget.DividerItemDecoration;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 public class CategoryCourseActivity extends AppCompatActivity {
 
@@ -34,6 +37,7 @@ public class CategoryCourseActivity extends AppCompatActivity {
     List<Course> courseList;
     CourseAdapter courseAdapter;
     String categoryName; // El nombre de la categoría seleccionada
+    DbUsuarios dbUsuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,12 @@ public class CategoryCourseActivity extends AppCompatActivity {
 
         // Configura el adaptador en el RecyclerView
         recyclerView.setAdapter(courseAdapter);
+
+        // Inicializa la instancia de DbUsuarios
+        dbUsuarios = new DbUsuarios(this);
+
+        // Obtiene el usuario logueado desde la base de datos local (SQLite)
+        Usuario usuario = dbUsuarios.obtenerUsuarioLogueado();
 
         // Obtén y muestra los cursos de la categoría seleccionada
         obtenerCursosDeCategoria(categoryName);
@@ -157,7 +167,7 @@ public class CategoryCourseActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
             Course course = courses.get(position);
-            holder.bind(course);
+            holder.bind(course, position);
         }
 
         @Override
@@ -171,18 +181,79 @@ public class CategoryCourseActivity extends AppCompatActivity {
             private TextView courseNameTextView;
             private TextView descriptionTextView;
             private ImageView courseImageView;
+            private Button ButtomModifi;
 
             public CourseViewHolder(View itemView) {
                 super(itemView);
                 courseNameTextView = itemView.findViewById(R.id.course_name);
                 descriptionTextView = itemView.findViewById(R.id.course_description);
                 courseImageView = itemView.findViewById(R.id.course_image);
+                ButtomModifi = itemView.findViewById(R.id.ButtomModifi);
+                ButtomModifi.setText("+");
             }
 
-            public void bind(Course course) {
+            public void bind(Course course, int position) {
                 courseNameTextView.setText(course.getName());
                 descriptionTextView.setText(course.getDescription());
+
+                ButtomModifi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        agregarCursoAlUsuario(position);
+                    }
+                });
             }
+        }
+
+        // Método para agregar cursos al usuario en la base de datos
+        private void agregarCursoAlUsuario(int position) {
+            if (position >= 0 && position < courseList.size()) {
+                Course course = courseList.get(position);
+                int courseId = obtenerIdCursoDesdeNombre(course.getName());
+
+                if (courseId != -1) {
+                    // Obtiene al usuario logueado
+                    Usuario usuario = dbUsuarios.obtenerUsuarioLogueado();
+
+                    if (usuario != null) {
+                        SQLiteDatabase database = dbUsuarios.getWritableDatabase();
+
+                        if (database != null) {
+                            // Define los valores a insertar en la tabla de asignaciones
+                            ContentValues values = new ContentValues();
+                            values.put("id_usuario", usuario.getId_usuario());
+                            values.put("id_curso", courseId);
+
+                            // Inserta el nuevo registro en la tabla de asignaciones
+                            long newRowId = database.insert(DbHelper.TABLE_INTER_CUR_USER, null, values);
+
+                            if (newRowId != -1) {
+                                Toast.makeText(CategoryCourseActivity.this, "Curso agregado exitosamente.", Toast.LENGTH_SHORT).show();
+                            }
+                            database.close();
+                        }
+                    }
+                }
+            }
+        }
+        @SuppressLint("Range")
+        private int obtenerIdCursoDesdeNombre(String nombreCurso) {
+            int courseId = -1;
+            SQLiteDatabase database = dbUsuarios.getReadableDatabase();
+
+            if (database != null) {
+                String query = "SELECT id_curso FROM " + DbHelper.TABLE_CURSO + " WHERE nombre = ?";
+                Cursor cursor = database.rawQuery(query, new String[]{nombreCurso});
+
+                if (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        courseId = cursor.getInt(cursor.getColumnIndex("id_curso"));
+                    }
+                    cursor.close();
+                }
+                database.close();
+            }
+            return courseId;
         }
     }
 }

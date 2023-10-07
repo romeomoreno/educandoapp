@@ -21,7 +21,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "educando.db";
-
     // Nombres de las tablas
     public static final String TABLE_USUARIOS = "Usuario";  // Cambio de nombre
     public static final String TABLE_CATEGORIA = "Categoria";
@@ -143,11 +142,9 @@ public class DbHelper extends SQLiteOpenHelper {
                     categoryList.add(categoria);
                 } while (cursor.moveToNext());
             }
-
             cursor.close();
             database.close();
         }
-
         return categoryList;
     }
 
