@@ -3,6 +3,7 @@ package com.educando.myapplication;
 import static com.educando.myapplication.R.id.back_main;
 import static com.educando.myapplication.R.id.back_account;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -206,7 +208,8 @@ public class MyCourseActivity extends AppCompatActivity {
                 ButtomModifi.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        eliminarCursoDeBaseDeDatos(position);
+                        // Mostrar un diálogo de confirmación antes de eliminar el curso
+                        showConfirmationDialog(position);
                     }
                 });
             }
@@ -263,6 +266,26 @@ public class MyCourseActivity extends AppCompatActivity {
                 database.close();
             }
             return courseId;
+        }
+
+        // Método para mostrar un diálogo de confirmación
+        private void showConfirmationDialog(final int position) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MyCourseActivity.this);
+            builder.setMessage("¿Estás seguro de que deseas retirar este curso?");
+            builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    eliminarCursoDeBaseDeDatos(position);
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
         }
     }
 }
