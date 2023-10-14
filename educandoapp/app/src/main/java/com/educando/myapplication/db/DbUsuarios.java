@@ -151,4 +151,58 @@ public class DbUsuarios extends DbHelper {
 
         return actualizado;
     }
+    public boolean existeUsuario(String email) {
+        boolean existe = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor cursor = null;
+
+        try {
+            String query = "SELECT * FROM " + TABLE_USUARIOS + " WHERE email = ?";
+            cursor = db.rawQuery(query, new String[]{email});
+
+            if (cursor != null && cursor.getCount() > 0) {
+                existe = true;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return existe;
+    }
+    public boolean existePassword(String password) {
+        boolean existe = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor cursor = null;
+
+        try {
+            String query = "SELECT * FROM " + TABLE_USUARIOS + " WHERE password = ?";
+            cursor = db.rawQuery(query, new String[]{password});
+
+            if (cursor != null && cursor.getCount() > 0) {
+                existe = true;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        return existe;
+    }
 }

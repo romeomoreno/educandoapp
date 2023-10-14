@@ -49,13 +49,17 @@ public class LoginActivity extends AppCompatActivity {
                 if (email.isEmpty() || password.isEmpty()) {
                     // Muestra un mensaje de error si alguno de los campos está en blanco
                     Log.i("LoginActivity", "Ingresa email y contraseña");
+
+                    // Muestra un mensaje de error en un TextView o mediante un Toast
+                    mostrarMensajeError("Ingresa email y contraseña");
                     return; // Sale de la función si los campos están en blanco
                 }
 
                 // Realiza la autenticación en la base de datos local SQLite
-                boolean loggedIn = dbUsuarios.buscarUsuario(email, password);
+                boolean usuarioCorrecto = dbUsuarios.existeUsuario(email);
+                boolean passwordCorrecta = dbUsuarios.existePassword(password);
 
-                if (loggedIn) {
+                if (usuarioCorrecto && passwordCorrecta) {
                     // El inicio de sesión fue exitoso en la base de datos local (SQLite)
 
                     // Actualiza el campo logueado a 1 (verdadero) para el usuario actual
@@ -71,11 +75,20 @@ public class LoginActivity extends AppCompatActivity {
                         Log.i("LoginActivity", "Error al actualizar el estado de inicio de sesión");
                     }
                 } else {
-                    // No se encontró un usuario con las credenciales proporcionadas en la base de datos local (SQLite)
-                    Log.i("LoginActivity", "Credenciales incorrectas, intenta de nuevo");
+
+                    if (!usuarioCorrecto&& !passwordCorrecta) {
+                        mostrarMensajeError("Usuario y contraseña incorrectos.");
+                    } else if (!usuarioCorrecto) {
+                        mostrarMensajeError("Usuario incorrecto.");
+                    } else {
+                        mostrarMensajeError("Contraseña incorrecta.");
+                    }
                 }
             }
         });
     }
-}
 
+    private void mostrarMensajeError(String mensaje) {
+        Toast.makeText(LoginActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+}

@@ -38,26 +38,37 @@ public class DataGenerator {
     }
 
     private static void generateCourses(SQLiteDatabase database) {
-        // Nombre de cursos de ejemplo
-        String[] courseNames = {"Curso de Java Avanzado", "Desarrollo de Aplicaciones Android", "Diseño de Interfaces de Usuario", "Python"};
-        Random random = new Random();
+
+        String[] courseNames = {"Curso de Java Avanzado", "Desarrollo de Aplicaciones Android",
+                "Diseño de Interfaces de Usuario", "Master Completo en Java de cero a experto",
+                "Introducción a la programación en Android","Curso de diseño de experiencia de usuario e interacciones"};
 
         for (String courseName : courseNames) {
             ContentValues values = new ContentValues();
             values.put("nombre", courseName);
-            values.put("descripcion", generateRandomDescription(courseName)); // Generar descripción aleatoria
-            values.put("profesor", generateRandomProfessor(courseName)); // Generar nombre de profesor aleatorio
-            values.put("duracion", "8 semanas"); // Duración ficticia
-            int precio = random.nextInt(501) + 500; // Precio aleatorio entre 500 y 1000
-            values.put("precio", precio); // Agregar el precio al ContentValues
-            values.put("id_categoria", random.nextInt(3) + 1); // Asigna a una categoría aleatoria
+            values.put("descripcion", generateRandomDescription(courseName));
+            values.put("profesor", generateRandomProfessor(courseName));
+            int duracionSemanas = new Random().nextInt(9) + 4;
+            values.put("duracion", duracionSemanas + " semanas");
+            int precio = new Random().nextInt(501) + 500;
+            values.put("precio", precio);
+
+            // Utilizar expresiones regulares para detectar palabras clave en el nombre del curso
+            if (courseName.matches("(?i).*\\bjava\\b.*")) {
+                values.put("id_categoria", 1);
+            } else if (courseName.matches("(?i).*\\bandroid\\b.*")) {
+                values.put("id_categoria", 2);
+            } else if (courseName.matches("(?i).*\\bdiseño\\b.*")) {
+                values.put("id_categoria", 3);
+            } else {
+                values.put("id_categoria", 4);
+            }
             database.insert(DbHelper.TABLE_CURSO, null, values);
         }
     }
 
     private static String generateRandomDescription(String courseName) {
-        // Utiliza un switch o una serie de if-else para asignar descripciones diferentes
-        // basadas en el nombre del curso
+
         switch (courseName) {
             case "Curso de Java Avanzado":
                 return "Conoce los conceptos clave del lenguaje de programación que se está comiendo al mundo. Aprende qué es una variable, una función, un objeto y dónde se guardan esos valores";
@@ -65,8 +76,12 @@ public class DataGenerator {
                 return "Sé parte de la comunidad que ya se está preparando para los desafíos de la IA.";
             case "Diseño de Interfaces de Usuario":
                 return "El diseñador UX se centra en investigar y analizar las necesidades del cliente";
-            case "Python":
-                return "En este curso aprenderás las bases de programación uno de los lenguajes más populares en estos tiempos. Partirás desde sus fundamentos, para luego abarcar módulos y sintaxis, hasta el uso de reglas para crear tus primeras aplicaciones.";
+            case "Master Completo en Java de cero a experto":
+                return "Aprende con el mejor curso Java de cero con las mejores prácticas POO, Java EE 9, CDI, JPA, EJB, JSF, Web Services, JAAS.";
+            case "Introducción a la programación en Android":
+                return "En esta formación intensiva se presentan los primeros pasos para el desarrollo de aplicaciones móviles a partir del lenguaje Java para Android, desde las versiones iniciales del sistema operativo hasta las versiones finales.";
+            case "Curso de diseño de experiencia de usuario e interacciones":
+                return "El diseño de experiencia de usuario es una práctica que sirve para diseñar productos centrados en las necesidades de los usuarios. Esta práctica está relacionada a su vez, con el diseño de interacciones como mediador del usuario con el proceso por medio de una interfaz.";
             default:
                 return "Descripción genérica para otros cursos.";
         }
@@ -81,7 +96,7 @@ public class DataGenerator {
     }
 
     private static String getRandomLoremIpsum() {
-        // Esto es solo un ejemplo de cómo generar texto aleatorio (lorem ipsum)
+        // Esto es solo un ejemplo de cómo generar texto aleatorio
         return "Aprende con los mejores profesores en la materia.";
     }
 

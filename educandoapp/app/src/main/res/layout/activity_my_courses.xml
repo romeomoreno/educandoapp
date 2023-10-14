@@ -16,11 +16,11 @@
 
     <TextView
         android:id="@+id/list_course"
-        android:layout_width="341dp"
-        android:layout_height="75dp"
-        android:text="Mis Cursos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mis Cursos  \nFavoritos"
         android:textColor="#6672FF"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,33 +32,33 @@
         android:id="@+id/recycler_view1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/list_course"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+        android:background="#FFF5E1"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:background="#FFF5E1"/>
-
-
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_course" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recycler_view1">
+        android:background="#FFF5E1"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:backgroundTint="#F8F8F8"
-            >
+            android:backgroundTint="#F8F8F8">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/back_main"
