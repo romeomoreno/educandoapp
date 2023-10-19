@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -28,6 +29,7 @@
         android:textColorHint="#3B608C"
         android:textSize="18sp"
         android:paddingLeft="15dp"
+        android:contentDescription="Campo de contraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +43,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_background1" />
+        app:srcCompat="@drawable/top_background1"
+        android:contentDescription="Fondo de la aplicación" />
 
     <TextView
         android:id="@+id/registerLogin"
@@ -53,7 +56,8 @@
         android:textStyle="bold"
         android:textColor="#6672FF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:contentDescription="Título de bienvenida" />
 
     <EditText
         android:id="@+id/emailLogin"
@@ -72,6 +76,7 @@
         android:inputType="textPersonName"
         android:visibility="visible"
         android:paddingLeft="15dp"
+        android:contentDescription="Campo de correo electrónico"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerLogin" />
@@ -84,7 +89,8 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogin"
-        app:srcCompat="@drawable/btn_arraw1" />
+        app:srcCompat="@drawable/btn_arraw1"
+        android:contentDescription="Botón de inicio de sesión" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -96,19 +102,19 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Login"/>
+        app:layout_constraintTop_toBottomOf="@+id/Login" />
 
     <TextView
         android:id="@+id/registerLogin1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="¿Eres nuevo? Registrate"
+        android:text="¿Eres nuevo? Regístrate"
         android:textColor="#3b608c"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:contentDescription="Botón de registro" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-

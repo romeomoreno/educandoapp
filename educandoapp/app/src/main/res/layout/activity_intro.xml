@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue" >
+    android:background="@color/blue">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_arc" />
+        app:srcCompat="@drawable/top_arc"
+        android:contentDescription="Imagen de encabezado" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -26,7 +27,8 @@
         android:background="@drawable/background_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        android:contentDescription="Botón de inicio de sesión">
 
         <TextView
             android:id="@+id/textView"
@@ -39,7 +41,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="Texto: Iniciar sesión" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -47,13 +50,14 @@
         android:id="@+id/textRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿Eres nuevo? Registrate"
+        android:text="¿Eres nuevo? Regístrate"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        android:contentDescription="Texto: ¿Eres nuevo? Regístrate" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -62,7 +66,8 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/girl" />
+        app:srcCompat="@drawable/girl"
+        android:contentDescription="Imagen de una niña" />
 
     <TextView
         android:id="@+id/textView3"
@@ -77,20 +82,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.39"
+        android:contentDescription="Texto: Educando" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Encuentra el curso en línea\n perfecto para ti."
+        android:text="Encuentra el curso en línea\nperfecto para ti."
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:layout_marginTop="13dp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:contentDescription="Texto: Encuentra el curso en línea, perfecto para ti." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

@@ -33,7 +33,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/nombre_main"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="Imagen de perfil del usuario" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -79,7 +80,8 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/girl2" />
+                    app:srcCompat="@drawable/girl2"
+                    android:contentDescription="Imagen representativa" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -87,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Que te gustaría\naprender hoy?"
+                    android:text="Qué te gustaría aprender hoy?"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="21sp"
@@ -101,13 +103,14 @@
                     android:layout_height="35dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/background_btn"
-                    android:text="Compralo Ahora"
+                    android:text="Cómpralo Ahora"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:contentDescription="Botón de compra" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,11 +127,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Categorias"
+                    android:text="Categorías"
                     android:textColor="@color/black"
                     android:textSize="19sp"
-                    android:textStyle="bold" />
-
+                    android:textStyle="bold"
+                    android:contentDescription="Categorías" />
 
             </LinearLayout>
 
@@ -146,7 +149,8 @@
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
                     android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
+                    android:paddingEnd="8dp"
+                    android:contentDescription="Lista de categorías" />
 
             </LinearLayout>
 
@@ -166,8 +170,8 @@
                     android:text="Cursos Populares"
                     android:textColor="@color/black"
                     android:textSize="19sp"
-                    android:textStyle="bold" />
-
+                    android:textStyle="bold"
+                    android:contentDescription="Cursos Populares" />
 
             </LinearLayout>
 
@@ -177,7 +181,8 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:paddingStart="8dp"
-                android:paddingEnd="8dp" />
+                android:paddingEnd="8dp"
+                android:contentDescription="Lista de cursos populares" />
 
         </LinearLayout>
     </ScrollView>
@@ -191,59 +196,61 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:backgroundTint="#F8F8F8"
-            >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
+            android:backgroundTint="#F8F8F8">
 
             <LinearLayout
-                android:id="@+id/Mycourse"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/btn_3" />
+                <LinearLayout
+                    android:id="@+id/Mycourse"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical"
+                    android:contentDescription="Mis Cursos">
 
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mis Cursos"
-                    android:textAlignment="center"
-                    android:textColor="#707070" />
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/btn_3" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mis Cursos"
+                        android:textAlignment="center"
+                        android:textColor="#707070" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Cuenta"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical"
+                    android:contentDescription="Cuenta">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/btn_4" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cuenta"
+                        android:textAlignment="center"
+                        android:textColor="#707070" />
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Cuenta"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/btn_4" />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cuenta"
-                    android:textAlignment="center"
-                    android:textColor="#707070" />
-            </LinearLayout>
-        </LinearLayout>
         </com.google.android.material.bottomappbar.BottomAppBar>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
