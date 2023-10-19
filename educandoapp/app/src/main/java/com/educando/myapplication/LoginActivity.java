@@ -47,42 +47,30 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = txtpassword.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()) {
-                    // Muestra un mensaje de error si alguno de los campos está en blanco
                     Log.i("LoginActivity", "Ingresa email y contraseña");
-
-                    // Muestra un mensaje de error en un TextView o mediante un Toast
                     mostrarMensajeError("Ingresa email y contraseña");
-                    return; // Sale de la función si los campos están en blanco
+                    return;
                 }
 
-                // Realiza la autenticación en la base de datos local SQLite
-                boolean usuarioCorrecto = dbUsuarios.existeUsuario(email);
-                boolean passwordCorrecta = dbUsuarios.existePassword(password);
+                // Obtén la contraseña encriptada de la base de datos
+                String hashedPassword = dbUsuarios.obtenerPassword(email);
 
-                if (usuarioCorrecto && passwordCorrecta) {
-                    // El inicio de sesión fue exitoso en la base de datos local (SQLite)
+                // Hashea la contraseña ingresada
+                String hashedInputPassword = dbUsuarios.hashPassword(password);
 
-                    // Actualiza el campo logueado a 1 (verdadero) para el usuario actual
+                if (hashedPassword != null && hashedPassword.equals(hashedInputPassword)) {
+                    // La contraseña coincide, lo que significa un inicio de sesión exitoso
                     boolean actualizado = dbUsuarios.actualizarEstadoLogueado(email, 1);
 
                     if (actualizado) {
                         Log.i("LoginActivity", "Inicio de sesión exitoso");
-
-                        // Después de mostrar el mensaje de bienvenida, puedes iniciar la MainActivity u otras acciones necesarias
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     } else {
                         Log.i("LoginActivity", "Error al actualizar el estado de inicio de sesión");
                     }
                 } else {
-
-                    if (!usuarioCorrecto&& !passwordCorrecta) {
-                        mostrarMensajeError("Usuario y contraseña incorrectos.");
-                    } else if (!usuarioCorrecto) {
-                        mostrarMensajeError("Usuario incorrecto.");
-                    } else {
-                        mostrarMensajeError("Contraseña incorrecta.");
-                    }
+                    mostrarMensajeError("Usuario o contraseña incorrectos.");
                 }
             }
         });

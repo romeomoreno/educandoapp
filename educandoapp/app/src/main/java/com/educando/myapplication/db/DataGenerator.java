@@ -95,18 +95,17 @@ public class DataGenerator {
         return professorNames[index];
     }
 
-    private static String getRandomLoremIpsum() {
-        // Esto es solo un ejemplo de cómo generar texto aleatorio
-        return "Aprende con los mejores profesores en la materia.";
-    }
-
     private static void createUserAndAssignCourses(SQLiteDatabase database) {
         // Crear un nuevo usuario en la tabla Usuarios
         ContentValues usuarioValues = new ContentValues();
         usuarioValues.put("nombre", "Romeo");
         usuarioValues.put("apellido", "Moreno");
         usuarioValues.put("email", "romeo@gmail.com");
-        usuarioValues.put("password", "romeo123");
+
+        // Encriptar la contraseña antes de guardarla directamente en DataGenerator
+        String hashedPassword = DbUsuarios.hashPassword("romeo123"); // Llamada estática
+        usuarioValues.put("password", hashedPassword);
+
         usuarioValues.put("logueado", 0); // O el valor que desees
         long usuarioId = database.insert(DbHelper.TABLE_USUARIOS, null, usuarioValues);
 
@@ -121,4 +120,5 @@ public class DataGenerator {
             database.insert(DbHelper.TABLE_INTER_CUR_USER, null, values);
         }
     }
+
 }
