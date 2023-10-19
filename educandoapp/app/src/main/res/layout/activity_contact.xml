@@ -29,17 +29,17 @@
 
 
 
-        <TextView
+        <EditText
             android:id="@+id/txtBlock"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:layout_margin="30dp"
             android:hint="Ingrese el mensaje."
             android:textSize="18sp"
-            android:layout_margin="30dp"
             android:background="@drawable/edittext_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txttitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
             android:textColor="#000000" />
 

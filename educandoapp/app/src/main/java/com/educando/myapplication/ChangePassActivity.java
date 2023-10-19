@@ -44,24 +44,33 @@ public class ChangePassActivity extends AppCompatActivity {
 
                 // Validar que la contraseña antigua sea correcta
                 Usuario usuario = dbUsuarios.obtenerUsuarioLogueado();
-                if (usuario != null && usuario.getPassword().equals(oldPassword)) {
-                    // Cambiar la contraseña
-                    boolean actualizado = dbUsuarios.actualizarPassword(usuario.getId_usuario(), newPassword1);
+                if (usuario != null) {
+                    // Encriptar la contraseña antigua ingresada por el usuario
+                    String hashedOldPassword = dbUsuarios.hashPassword(oldPassword);
 
-                    if (actualizado) {
-                        Toast.makeText(ChangePassActivity.this, "Contraseña cambiada exitosamente", Toast.LENGTH_SHORT).show();
+                    // Comparar la contraseña encriptada almacenada en la base con la contraseña antigua encriptada
+                    if (hashedOldPassword.equals(usuario.getPassword())) {
+                        // Encriptar la nueva contraseña
+                        String hashedNewPassword = dbUsuarios.hashPassword(newPassword1);
 
-                        // Crear un intent para ir a AccountActivity
-                        Intent intent = new Intent(ChangePassActivity.this, AccountActivity.class);
-                        startActivity(intent);
+                        // Cambiar la contraseña encriptada
+                        boolean actualizado = dbUsuarios.actualizarPassword(usuario.getId_usuario(), hashedNewPassword);
 
-                        // Cerrar esta actividad
-                        finish();
+                        if (actualizado) {
+                            Toast.makeText(ChangePassActivity.this, "Contraseña cambiada exitosamente", Toast.LENGTH_SHORT).show();
+
+                            // Crear un intent para ir a AccountActivity
+                            Intent intent = new Intent(ChangePassActivity.this, AccountActivity.class);
+                            startActivity(intent);
+
+                            // Cerrar esta actividad
+                            finish();
+                        } else {
+                            Toast.makeText(ChangePassActivity.this, "Error al cambiar la contraseña", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(ChangePassActivity.this, "Error al cambiar la contraseña", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePassActivity.this, "La contraseña antigua es incorrecta", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(ChangePassActivity.this, "La contraseña antigua es incorrecta", Toast.LENGTH_SHORT).show();
                 }
             }
         });
