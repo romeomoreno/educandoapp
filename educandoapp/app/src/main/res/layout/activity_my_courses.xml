@@ -12,7 +12,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_background2" />
+        app:srcCompat="@drawable/top_background2"
+        android:contentDescription="Imagen de encabezado" />
 
     <TextView
         android:id="@+id/list_course"
@@ -26,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/image1"/>
+        app:layout_constraintTop_toBottomOf="@+id/image1"
+        android:contentDescription="Título: Mis Cursos Favoritos" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view1"
@@ -40,7 +42,8 @@
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_course" />
+        app:layout_constraintTop_toBottomOf="@+id/list_course"
+        android:contentDescription="Lista de cursos" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -65,14 +68,16 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:contentDescription="Botón de inicio" >
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:src="@drawable/btn_1" />
+                        android:src="@drawable/btn_1"
+                        android:contentDescription="Ícono de inicio" />
 
                     <TextView
                         android:id="@+id/textView10"
@@ -89,14 +94,16 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:contentDescription="Botón de cuenta" >
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
-                        android:src="@drawable/btn_4" />
+                        android:src="@drawable/btn_4"
+                        android:contentDescription="Ícono de cuenta" />
 
                     <TextView
                         android:id="@+id/textView13"

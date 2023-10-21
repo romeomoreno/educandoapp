@@ -14,7 +14,8 @@
         android:src="@drawable/pic1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Imagen del curso: [Nombre del curso]" />
 
     <TextView
         android:id="@+id/course_name"
@@ -27,7 +28,8 @@
         app:layout_constraintTop_toBottomOf="@+id/course_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:contentDescription="Nombre del curso: [Nombre del curso]" />
 
     <TextView
         android:id="@+id/course_description"
@@ -38,7 +40,8 @@
         app:layout_constraintTop_toBottomOf="@+id/course_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp" />
+        android:layout_marginTop="4dp"
+        android:contentDescription="Descripción del curso: [Course Description]" />
 
     <Button
         android:id="@+id/ButtomModifi"
@@ -48,6 +51,7 @@
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course_description" />
+        app:layout_constraintTop_toBottomOf="@+id/course_description"
+        android:contentDescription="Botón para modificar el curso" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
