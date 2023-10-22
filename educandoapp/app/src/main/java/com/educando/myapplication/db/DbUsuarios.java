@@ -11,6 +11,8 @@ import com.educando.myapplication.Usuario;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DbUsuarios extends DbHelper {
 
@@ -203,6 +205,31 @@ public class DbUsuarios extends DbHelper {
         }
 
         return hashedPassword;
+    }
+
+    public long insertarPost(int idUsuario, String titulo, String mensaje) {
+        long id = 0;
+
+        try {
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put("id_usuario", idUsuario);
+            values.put("titulo", titulo);
+            values.put("mensaje", mensaje);
+
+            // Obtén la fecha actual
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
+            values.put("fecha", fecha);
+
+            id = db.insert(TABLE_CONTACTO, null, values);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return id;
     }
 
 }
