@@ -65,6 +65,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "id_inter INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "id_usuario INTEGER," +
                 "id_curso INTEGER," +
+                "es_favorito INTEGER DEFAULT 0, " +  // Nueva columna para marcar favoritos
                 "FOREIGN KEY (id_usuario) REFERENCES " + TABLE_USUARIOS + "(id_usuario)," +
                 "FOREIGN KEY (id_curso) REFERENCES " + TABLE_CURSO + "(id_curso))");
 

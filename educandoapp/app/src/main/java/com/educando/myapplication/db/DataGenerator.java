@@ -117,6 +117,7 @@ public class DataGenerator {
             ContentValues values = new ContentValues();
             values.put("id_usuario", usuarioId);
             values.put("id_curso", courseId);
+            values.put("es_favorito", 0);
             database.insert(DbHelper.TABLE_INTER_CUR_USER, null, values);
         }
     }
