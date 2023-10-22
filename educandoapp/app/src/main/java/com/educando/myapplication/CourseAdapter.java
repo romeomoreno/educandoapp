@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,7 +58,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTxt, ownerTxt, priceTxt, timeTxt;
         ImageView pic;
-        Button ButtomModifi;
+        ImageButton favoriteButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +67,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             priceTxt = itemView.findViewById(R.id.precioTxt);
             timeTxt = itemView.findViewById(R.id.timetxt);
             pic = itemView.findViewById(R.id.pic);
-            ButtomModifi = itemView.findViewById(R.id.ButtomModifi);
+            favoriteButton = itemView.findViewById(R.id.favoriteButton);
         }
     }
 }
