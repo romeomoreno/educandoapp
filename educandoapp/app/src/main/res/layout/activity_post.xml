@@ -105,7 +105,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
                         android:contentDescription="Ícono de inicio"
-                        android:src="@drawable/btn_1" />
+                        android:src="@drawable/ic_1" />
 
                     <TextView
                         android:id="@+id/textView10"
