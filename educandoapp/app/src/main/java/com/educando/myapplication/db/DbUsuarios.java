@@ -1,5 +1,6 @@
 package com.educando.myapplication.db;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,12 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
+import com.educando.myapplication.Contacto;
 import com.educando.myapplication.Usuario;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DbUsuarios extends DbHelper {
 
@@ -230,6 +234,45 @@ public class DbUsuarios extends DbHelper {
             ex.printStackTrace();
         }
         return id;
+    }
+
+    public List<Contacto> getMensajesEnviados() {
+        List<Contacto> mensajesEnviados = new ArrayList<>();
+
+        // Obtén el usuario logueado
+        Usuario usuarioLogueado = obtenerUsuarioLogueado();
+
+        if (usuarioLogueado != null) {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = null;
+
+            try {
+                String query = "SELECT * FROM " + TABLE_CONTACTO + " WHERE id_usuario = ?";
+                cursor = db.rawQuery(query, new String[]{String.valueOf(usuarioLogueado.getId_usuario())});
+
+                if (cursor != null && cursor.moveToFirst()) {
+                    do {
+                        // Obtén los datos del mensaje
+                        @SuppressLint("Range") int idMensaje = cursor.getInt(cursor.getColumnIndex("id_contact"));
+                        @SuppressLint("Range") String fecha = cursor.getString(cursor.getColumnIndex("fecha"));
+                        @SuppressLint("Range") String titulo = cursor.getString(cursor.getColumnIndex("titulo"));
+                        @SuppressLint("Range") String mensaje = cursor.getString(cursor.getColumnIndex("mensaje"));
+
+                        // Crea un objeto Contacto con los datos obtenidos
+                        Contacto mensajeEnviado = new Contacto(idMensaje, fecha, usuarioLogueado.getId_usuario(), titulo, mensaje);
+                        mensajesEnviados.add(mensajeEnviado);
+                    } while (cursor.moveToNext());
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+                db.close();
+            }
+        }
+        return mensajesEnviados;
     }
 
 }
