@@ -1,11 +1,15 @@
 package com.educando.myapplication;
 
+import static com.educando.myapplication.R.id.back_account;
+import static com.educando.myapplication.R.id.go_historial;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -29,7 +33,7 @@ public class ContactActivity extends AppCompatActivity {
 
         // Obtén referencias a los botones
         Button enviarButton = findViewById(R.id.btnEnviar);
-        Button volverButton = findViewById(R.id.btnBack);
+
 
         // Configura el clic del botón "Enviar" para validar y enviar el mensaje
         enviarButton.setOnClickListener(new View.OnClickListener() {
@@ -40,12 +44,25 @@ public class ContactActivity extends AppCompatActivity {
             }
         });
 
-        // Configura el clic del botón "Volver" para volver a AccountActivity
-        volverButton.setOnClickListener(new View.OnClickListener() {
+        LinearLayout cuenta = findViewById(back_account);
+        cuenta.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                // Inicia la actividad AccountActivity
+                // Aquí escribirás el código para iniciar la Main Activity
                 Intent intent = new Intent(ContactActivity.this, AccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Configura el clic del botón "Volver" para volver a AccountActivity
+        LinearLayout historial = findViewById(go_historial);
+        historial.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Aquí escribirás el código para iniciar la Main Activity
+                Intent intent = new Intent(ContactActivity.this, MyHistorialActivity.class);
                 startActivity(intent);
             }
         });

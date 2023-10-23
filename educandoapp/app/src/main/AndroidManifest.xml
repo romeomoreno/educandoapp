@@ -65,6 +65,11 @@
             android:exported="true" >
         </activity>
 
+        <activity
+            android:name=".MyHistorialActivity"
+            android:exported="true" >
+        </activity>
+
     </application>
 
 </manifest>
