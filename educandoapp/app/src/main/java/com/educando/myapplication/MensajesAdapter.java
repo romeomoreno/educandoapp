@@ -11,7 +11,7 @@ import java.util.List;
 public class MensajesAdapter extends RecyclerView.Adapter<MensajesAdapter.MensajeViewHolder> {
     private List<Contacto> mensajes;
 
-    public MensajesAdapter() {
+    public MensajesAdapter(List<Contacto> mensajes) {
         this.mensajes = mensajes;
     }
 
@@ -36,8 +36,10 @@ public class MensajesAdapter extends RecyclerView.Adapter<MensajesAdapter.Mensaj
         return mensajes.size();
     }
 
-    public void setMensajes(List<Contacto> mensajes) {
-        this.mensajes = mensajes;
+    // Esta función te permitirá actualizar los mensajes en el adaptador
+    public void setMensajes(List<Contacto> nuevosMensajes) {
+        mensajes.clear();
+        mensajes.addAll(nuevosMensajes);
         notifyDataSetChanged();
     }
 
@@ -54,3 +56,4 @@ public class MensajesAdapter extends RecyclerView.Adapter<MensajesAdapter.Mensaj
         }
     }
 }
+

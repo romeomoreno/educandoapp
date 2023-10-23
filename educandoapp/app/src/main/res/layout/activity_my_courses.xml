@@ -52,7 +52,8 @@
         android:layout_height="63dp"
         app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-3dp">
+        tools:layout_editor_absoluteX="-3dp"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
