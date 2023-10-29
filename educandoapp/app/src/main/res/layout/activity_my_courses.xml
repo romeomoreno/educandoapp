@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:cardCornerRadius="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -12,7 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_background2" />
+        app:srcCompat="@drawable/top_background2"
+        android:contentDescription="Imagen de encabezado" />
 
     <TextView
         android:id="@+id/list_course"
@@ -26,13 +28,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toBottomOf="@+id/image1"/>
+        app:layout_constraintTop_toBottomOf="@+id/image1"
+        android:contentDescription="Título: Mis Cursos Favoritos" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#FFF5E1"
+        app:cardBackgroundColor="@android:color/transparent"
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingStart="8dp"
@@ -40,14 +43,17 @@
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_course" />
+        app:layout_constraintTop_toBottomOf="@+id/list_course"
+        android:contentDescription="Lista de cursos" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#FFF5E1"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_width="414dp"
+        android:layout_height="63dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:ignore="MissingConstraints">
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:layout_width="match_parent"
@@ -65,6 +71,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
+                    android:contentDescription="Botón de inicio"
                     android:orientation="vertical">
 
                     <ImageView
@@ -72,6 +79,7 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
+                        android:contentDescription="Ícono de inicio"
                         android:src="@drawable/btn_1" />
 
                     <TextView
@@ -89,6 +97,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
+                    android:contentDescription="Botón de cuenta"
                     android:orientation="vertical">
 
                     <ImageView
@@ -96,6 +105,7 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
+                        android:contentDescription="Ícono de cuenta"
                         android:src="@drawable/btn_4" />
 
                     <TextView

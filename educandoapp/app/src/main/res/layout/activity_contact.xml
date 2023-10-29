@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFF0FC"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
-
+        <!-- Título -->
         <EditText
             android:id="@+id/txttitle"
             android:layout_width="0dp"
@@ -16,9 +16,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/edittext_background"
-            android:drawablePadding="16dp"
             android:ems="10"
-            android:hint="Titulo"
+            android:hint="Introduzca un título"
             android:gravity="center"
             android:inputType="textPersonName"
             android:textColorHint="#3B608C"
@@ -27,23 +26,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-
-
-        <TextView
+        <!-- Campo de mensaje -->
+        <EditText
             android:id="@+id/txtBlock"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:layout_margin="30dp"
             android:hint="Ingrese el mensaje."
             android:textSize="18sp"
-            android:layout_margin="30dp"
             android:background="@drawable/edittext_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txttitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
             android:textColor="#000000" />
 
-
+        <!-- Botón Enviar -->
         <Button
             android:id="@+id/btnEnviar"
             android:layout_width="wrap_content"
@@ -55,27 +53,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtBlock" />
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Volver"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnEnviar" />
 
+        <!-- Imagen (si es decorativa, no necesita descripción) -->
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="412dp"
-            android:layout_height="219dp"
+            android:layout_width="409dp"
+            android:layout_height="187dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/top_background2" />
 
+        <!-- Título de la pantalla -->
         <TextView
             android:id="@+id/textView"
             android:layout_width="341dp"
@@ -89,5 +79,78 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="414dp"
+            android:layout_height="63dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="-3dp"
+            tools:ignore="MissingConstraints">
 
+                <com.google.android.material.bottomappbar.BottomAppBar
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom"
+                    android:backgroundTint="#F8F8F8">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/back_account"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.25"
+                                    android:contentDescription="Botón de inicio"
+                                    android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:layout_gravity="center"
+                                            android:layout_margin="5dp"
+                                            android:contentDescription="Ícono de inicio"
+                                            android:src="@drawable/btn_4" />
+
+                                        <TextView
+                                            android:id="@+id/textView10"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Cuenta"
+                                            android:textAlignment="center"
+                                            android:textColor="#707070" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:id="@+id/go_historial"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.25"
+                                    android:contentDescription="Botón de cuenta"
+                                    android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="24dp"
+                                            android:layout_height="24dp"
+                                            android:layout_gravity="center"
+                                            android:layout_margin="5dp"
+                                            android:contentDescription="Ícono de cuenta"
+                                            android:src="@drawable/ic_1" />
+
+                                        <TextView
+                                            android:id="@+id/textView13"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Historial"
+                                            android:textAlignment="center"
+                                            android:textColor="#707070" />
+                                </LinearLayout>
+                        </LinearLayout>
+                </com.google.android.material.bottomappbar.BottomAppBar>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,9 +1,7 @@
 package com.educando.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,32 +38,40 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = txtemail.getText().toString();
                 String password = txtpassword.getText().toString();
 
+                // Expresiones regulares para validar nombre, apellido y email
+                String nombreRegex = "^[A-Za-z]+$"; // Solo letras
+                String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$"; // Formato de email
+
                 // Verifica si los campos están vacíos
                 if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                    // Mostrar una alerta indicando que los campos deben completarse
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("Por favor, complete todos los campos.");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss(); // Cierra la alerta
-                        }
-                    });
-                    builder.show();
+                    Toast.makeText(RegisterActivity.this, "Por favor, complete todos los campos.", Toast.LENGTH_SHORT).show();
+                } else if (!nombre.matches(nombreRegex) || !apellido.matches(nombreRegex)) {
+                    // Validación para nombre y apellido
+                    Toast.makeText(RegisterActivity.this, "Nombre y Apellido deben contener solo letras.", Toast.LENGTH_SHORT).show();
+                } else if (!email.matches(emailRegex)) {
+                    // Validación para el formato de email
+                    Toast.makeText(RegisterActivity.this, "El correo electrónico no tiene un formato válido.", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Todos los campos están completos, procede con el registro en la base de datos
-                    long id = dbUsuarios.insertarContacto(nombre, apellido, email, password);
+                    // Verifica si el correo electrónico ya existe en la base de datos
+                    if (dbUsuarios.existeUsuario(email)) {
+                        // El correo electrónico ya está registrado, muestra un mensaje de error mediante un Toast
+                        Toast.makeText(RegisterActivity.this, "El correo electrónico ya está registrado.", Toast.LENGTH_SHORT).show();
 
-                    if (id != -1) {
-                        // Registro exitoso en la base de datos local (SQLite)
-                        Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_LONG).show();
-                        // Puedes redirigir al usuario a la pantalla de inicio de sesión aquí
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish(); // Cierra esta actividad si el registro es exitoso
                     } else {
-                        // Error en el registro en la base de datos local (SQLite)
-                        Toast.makeText(RegisterActivity.this, "Error en el registro", Toast.LENGTH_LONG).show();
+                        // El correo electrónico no existe en la base de datos, procede con el registro
+                        long id = dbUsuarios.insertarContacto(nombre, apellido, email, password);
+
+                        if (id != -1) {
+                            // Registro exitoso en la base de datos local (SQLite)
+                            Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_LONG).show();
+                            // Puedes redirigir al usuario a la pantalla de inicio de sesión aquí
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish(); // Cierra esta actividad si el registro es exitoso
+                        } else {
+                            // Error en el registro en la base de datos local (SQLite)
+                            Toast.makeText(RegisterActivity.this, "Error en el registro", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
             }

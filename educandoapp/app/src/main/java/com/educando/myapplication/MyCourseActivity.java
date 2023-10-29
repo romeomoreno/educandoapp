@@ -3,20 +3,25 @@ package com.educando.myapplication;
 import static com.educando.myapplication.R.id.back_main;
 import static com.educando.myapplication.R.id.back_account;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -121,30 +126,49 @@ public class MyCourseActivity extends AppCompatActivity {
         }
     }
 
+    //Obtiene una lista de cursos asociados a un usuario específico desde la base de datos local.
     private List<Course> obtenerCursosDeUsuario(int idUsuario) {
+        // Inicializa una lista vacía para almacenar los cursos del usuario
         List<Course> courses = new ArrayList<>();
+
+        // Obtiene una instancia de la base de datos en modo lectura
         SQLiteDatabase database = dbUsuarios.getReadableDatabase();
 
+        // Verifica si la base de datos es accesible
         if (database != null) {
+            // Construye una consulta SQL para obtener los cursos del usuario
             String query = "SELECT c.* FROM " + DbHelper.TABLE_CURSO + " c " +
                     "INNER JOIN " + DbHelper.TABLE_INTER_CUR_USER + " i " +
                     "ON c.id_curso = i.id_curso " +
                     "WHERE i.id_usuario = ?";
+
+            // Ejecuta la consulta con el ID del usuario como parámetro
             Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(idUsuario)});
 
+            // Verifica si se obtuvieron resultados en la consulta
             if (cursor != null) {
+                // Itera a través de los resultados del cursor
                 while (cursor.moveToNext()) {
+                    // Obtiene el nombre y la descripción del curso desde el cursor
                     @SuppressLint("Range") String nombre = cursor.getString(cursor.getColumnIndex("nombre"));
                     @SuppressLint("Range") String descripcion = cursor.getString(cursor.getColumnIndex("descripcion"));
 
                     // Crea un objeto Course y agrégalo a la lista
                     Course course = new Course(nombre, descripcion);
+
+                    // Agrega el curso a la lista de cursos del usuario
                     courses.add(course);
                 }
+
+                // Cierra el cursor
                 cursor.close();
             }
+
+            // Cierra la conexión a la base de datos en modo lectura
             database.close();
         }
+
+        // Devuelve la lista de cursos del usuario
         return courses;
     }
 
@@ -181,15 +205,18 @@ public class MyCourseActivity extends AppCompatActivity {
             private TextView courseNameTextView;
             private TextView descriptionTextView;
             private ImageView courseImageView;
-            private Button ButtomModifi;
+            private ImageButton favoriteButton;
+
+            private Button buttonCompra;
 
             public CourseViewHolder(View itemView) {
                 super(itemView);
                 courseNameTextView = itemView.findViewById(R.id.course_name);
                 descriptionTextView = itemView.findViewById(R.id.course_description);
                 courseImageView = itemView.findViewById(R.id.course_image);
-                ButtomModifi = itemView.findViewById(R.id.ButtomModifi);
-                ButtomModifi.setText("-");
+                favoriteButton = itemView.findViewById(R.id.favoriteButton);
+                favoriteButton.setImageResource(R.drawable.delete);
+                buttonCompra = itemView.findViewById(R.id.button_compra);
             }
 
             public void bind(Course course, int position) {
@@ -203,10 +230,28 @@ public class MyCourseActivity extends AppCompatActivity {
                     courseImageView.setImageResource(resourceId);
                 }
 
-                ButtomModifi.setOnClickListener(new View.OnClickListener() {
+                favoriteButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        eliminarCursoDeBaseDeDatos(position);
+                        // Mostrar un diálogo de confirmación antes de eliminar el curso
+                        showConfirmationDialog(position);
+                    }
+                });
+
+                // Configura la lógica del botón de compra aquí
+                buttonCompra.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Lógica de tu botón, por ejemplo, abrir una URL
+                        String url = "https://www.google.com";
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        Log.d("MiApp", "Se hizo clic en el botón de compra");
+
+                        if (intent.resolveActivity(v.getContext().getPackageManager()) != null) {
+                            v.getContext().startActivity(intent);
+                        } else {
+                            Toast.makeText(v.getContext(), "No se puede abrir la URL. Instala un navegador web.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
@@ -263,6 +308,26 @@ public class MyCourseActivity extends AppCompatActivity {
                 database.close();
             }
             return courseId;
+        }
+
+        // Método para mostrar un diálogo de confirmación
+        private void showConfirmationDialog(final int position) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MyCourseActivity.this);
+            builder.setMessage("¿Estás seguro de que deseas eliminar este curso de tus favoritos?");
+            builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    eliminarCursoDeBaseDeDatos(position);
+                }
+            });
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
         }
     }
 }

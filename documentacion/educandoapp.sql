@@ -24,9 +24,9 @@ CREATE TABLE IF NOT EXISTS `Curso` (
   `id_Curso` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
   `Usuario_id_Usuario` INT NOT NULL,
-  `Descripcion` VARCHAR(500) NOT NULL, -- Se corrigió aquí
-  `Profesor` VARCHAR(45) NOT NULL, -- Se corrigió aquí
-  `Duracion` VARCHAR(20) NOT NULL, -- Se corrigió aquí
+  `Descripcion` VARCHAR(500) NOT NULL, -- 
+  `Profesor` VARCHAR(45) NOT NULL, -- 
+  `Duracion` VARCHAR(20) NOT NULL, -- 
   PRIMARY KEY (`id_Curso`)
 ) ENGINE = InnoDB;
 
@@ -45,3 +45,26 @@ CREATE TABLE IF NOT EXISTS `Categoria` (
 
 -- INSERT INTO Categoria (id_Categoria, Nombre, Descripcion)
 -- VALUES (1, 'Educando', 'Prueba');
+-- -----------------------------------------------------
+-- Table `Educando`.`Posts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Contacto` (
+  `id_Contacto` INT NOT NULL AUTO_INCREMENT,
+  `Fecha` DATE NOT NULL,
+  `titulo` VARCHAR(200) NOT NULL,
+  `Contenido` VARCHAR(280) NOT NULL,
+
+ 
+  PRIMARY KEY (`id_Contacto`))
+ENGINE = InnoDB;
+
+
+ALTER TABLE Contacto ADD COLUMN titulo VARCHAR(255) NOT NULL;
+
+
+INSERT INTO Contacto (titulo, Fecha, Contenido) VALUES ('Titulo de prueba5', '2023-10-24', 'Federico');
+
+
+
+
+SELECT * FROM Contacto WHERE Contenido = 'Federico';

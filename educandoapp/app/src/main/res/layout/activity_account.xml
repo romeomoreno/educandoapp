@@ -44,6 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
+                        android:contentDescription="Imagen de perfil"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -67,6 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
+                        android:contentDescription="Fondo de imagen"
                         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -307,7 +309,6 @@
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
                                 android:textSize="16sp" />
-
                         </LinearLayout>
 
                         <View
@@ -323,10 +324,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="24dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_margin="10dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -402,7 +400,8 @@
                         android:layout_height="wrap_content"
                         android:text="Inicio"
                         android:textAlignment="center"
-                        android:textColor="#707070" />
+                        android:textColor="#707070"
+                        android:contentDescription="Ir a la pantalla de inicio" />
                 </LinearLayout>
 
 
@@ -427,7 +426,8 @@
                         android:layout_height="wrap_content"
                         android:text="Mis Cursos"
                         android:textAlignment="center"
-                        android:textColor="#707070" />
+                        android:textColor="#707070"
+                        android:contentDescription="Ir a la pantalla de Mis Cursos" />
                 </LinearLayout>
 
 

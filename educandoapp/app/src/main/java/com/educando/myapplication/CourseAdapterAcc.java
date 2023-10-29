@@ -1,10 +1,15 @@
 package com.educando.myapplication;
 
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +35,7 @@ public class CourseAdapterAcc extends RecyclerView.Adapter<CourseAdapterAcc.Cour
         Course course = courseList.get(position);
         holder.courseName.setText(course.getName());
         holder.courseDescription.setText(course.getDescription());
+
     }
 
     @Override

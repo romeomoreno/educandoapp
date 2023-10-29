@@ -27,6 +27,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TABLE_CURSO = "Curso";
     public static final String TABLE_INTER_CUR_USER = "Inter_cur_user";
 
+    public static final String TABLE_CONTACTO = "Contacto";
+
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -63,8 +65,18 @@ public class DbHelper extends SQLiteOpenHelper {
                 "id_inter INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "id_usuario INTEGER," +
                 "id_curso INTEGER," +
+                "es_favorito INTEGER DEFAULT 0, " +  // Nueva columna para marcar favoritos
                 "FOREIGN KEY (id_usuario) REFERENCES " + TABLE_USUARIOS + "(id_usuario)," +
                 "FOREIGN KEY (id_curso) REFERENCES " + TABLE_CURSO + "(id_curso))");
+
+        // Tabla de Contacto
+        sqLiteDatabase.execSQL("CREATE TABLE "  + TABLE_CONTACTO + "(" +
+                "id_contact INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "fecha DATE," +
+                "id_usuario INTEGER," +
+                "titulo TEXT(200)," +
+                "mensaje TEXT(500)," +
+                "FOREIGN KEY (id_usuario) REFERENCES " + TABLE_USUARIOS + "(id_usuario))");
     }
 
     @Override
@@ -74,6 +86,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CURSO);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIA);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_USUARIOS);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTO);
         onCreate(sqLiteDatabase);
     }
 
